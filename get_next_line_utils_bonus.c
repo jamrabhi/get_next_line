@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jamrabhi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/05 12:55:34 by jamrabhi          #+#    #+#             */
-/*   Updated: 2019/12/05 12:58:26 by jamrabhi         ###   ########.fr       */
+/*   Created: 2021/06/04 18:48:29 by jamrabhi          #+#    #+#             */
+/*   Updated: 2021/06/04 18:48:46 by jamrabhi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ void	*ft_memalloc(size_t size)
 	size_t	i;
 
 	i = 0;
-	if (!(mem = malloc(size)))
+	mem = malloc(size);
+	if (!mem)
 		return (NULL);
 	while (i < size)
 	{
-		((char*)mem)[i] = 0;
+		((char *)mem)[i] = 0;
 		i++;
 	}
 	return (mem);
@@ -30,7 +31,7 @@ void	*ft_memalloc(size_t size)
 
 size_t	ft_strlen(const char *str)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (str[i])
@@ -50,7 +51,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!(s1 && s2))
 		return (NULL);
 	str_len = (ft_strlen(s1) + ft_strlen(s2));
-	if (!(str = (char *)malloc(sizeof(*str) * (str_len + 1))))
+	str = (char *)malloc(sizeof(*str) * (str_len + 1));
+	if (!str)
 		return (NULL);
 	while (s1[i])
 	{
@@ -73,11 +75,11 @@ char	*ft_strchr(const char *s, int c)
 	while (s[i])
 	{
 		if (s[i] == ch)
-			return ((char*)s + i);
-		i++;
+			return ((char *)s + i);
+		i++ ;
 	}
 	if (s[i] == '\0' && ch == '\0')
-		return ((char*)s + i);
+		return ((char *)s + i);
 	return (NULL);
 }
 
@@ -91,7 +93,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if (start > ft_strlen(s))
 		len = 0;
-	if (!(rt = (char *)malloc(sizeof(*rt) * (len + 1))))
+	rt = (char *)malloc(sizeof(*rt) * (len + 1));
+	if (!rt)
 		return (NULL);
 	while (*s + start && i < len)
 	{
